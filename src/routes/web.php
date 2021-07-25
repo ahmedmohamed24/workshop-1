@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
     // Route::get('/',[\App\Http\Controllers\ ])
+    Route::post('/board', [\App\Http\Controllers\BoardController::class, 'save'])->name('board.save');
+    Route::get('/{boardSlug}', [\App\Http\Controllers\BoardController::class, 'show'])->name('board.show');
 });
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [\App\Http\Controllers\UserAuthController::class, 'register'])->name('user.register');
+    Route::get('/register', [\App\Http\Controllers\UserAuthController::class, 'register'])->name('register');
     Route::post('/register', [\App\Http\Controllers\UserAuthController::class, 'doRegister'])->name('user.doRegister');
-    Route::get('/login', [\App\Http\Controllers\UserAuthController::class, 'login'])->name('user.login');
+    Route::get('/login', [\App\Http\Controllers\UserAuthController::class, 'login'])->name('login');
     Route::post('/login', [\App\Http\Controllers\UserAuthController::class, 'doLogin'])->name('user.doLogin');
 });

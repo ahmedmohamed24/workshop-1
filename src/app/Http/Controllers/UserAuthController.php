@@ -12,7 +12,7 @@ class UserAuthController extends Controller
 {
     public function Register()
     {
-        return \view('user.register');
+        return \view('register');
     }
 
     public function doRegister(UserRegisterRequest $request)
@@ -26,7 +26,7 @@ class UserAuthController extends Controller
 
     public function login()
     {
-        return \view('user.login');
+        return \view('login');
     }
 
     public function doLogin(UserLoginRequest $request)

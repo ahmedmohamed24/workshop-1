@@ -21,7 +21,7 @@ class LoginTest extends TestCase
     public function testSeeLoginViewOnVisitingItsRoute()
     {
         $this->withoutExceptionHandling();
-        $this->get(\route('user.login'))->assertViewIs('user.login');
+        $this->get(\route('login'))->assertViewIs('login');
     }
 
     // @test
