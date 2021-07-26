@@ -17,10 +17,6 @@ class CardController extends Controller
         return \back()->with('message', 'success');
     }
 
-    public function show(int $boardId, int $cardId)
-    {
-    }
-
     public function update(int $boardId, int $cardId, CardUpdateRequest $request)
     {
         if (0 !== auth()->user()->boards()->where('id', $boardId)->firstOrFail()->cards()->where('title', $request->title)->count()) {

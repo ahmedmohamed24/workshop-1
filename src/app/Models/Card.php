@@ -19,4 +19,9 @@ class Card extends Model
     {
         return $this->belongsTo(Board::class, 'board', 'id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'card', 'id');
+    }
 }
