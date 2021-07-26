@@ -24,7 +24,7 @@ class BoardController extends Controller
 
     public function show(string $boardSlug)
     {
-        $board = auth()->user()->boards()->where('slug', $boardSlug)->firstOrFail();
+        $board = auth()->user()->boards()->where('slug', $boardSlug)->with('cards')->firstOrFail();
 
         return \view('board.home')->with('board', $board);
     }

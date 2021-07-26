@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Board;
+use App\Models\Card;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -216,5 +217,19 @@ class BoardTest extends TestCase
         Auth::logout();
         $response = $this->actingAs(User::factory()->create())->delete(\route('board.delete', $board['slug']));
         $response->assertNotFound();
+    }
+
+    // @test
+    public function testDeletingBoardRemovesItsCards()
+    {
+        $board = Board::factory()->raw();
+        $this->post(\route('board.save'), $board);
+        $card = Card::factory()->raw(['title' => 'one', 'board' => 1]);
+        $this->post(route('card.save'), $card);
+        $card = Card::factory()->raw(['title' => 'two', 'board' => 1]);
+        $this->post(route('card.save'), $card);
+        $this->assertDatabaseCount('cards', 2);
+        $this->delete(\route('board.delete', $board['slug']));
+        $this->assertDatabaseCount('cards', 0);
     }
 }

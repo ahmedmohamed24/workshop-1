@@ -4,21 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBoardsTable extends Migration
+class CreateCardsTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('owner');
-            $table->foreign('owner')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('color', 7);
-            $table->index('slug');
+            $table->unsignedBigInteger('board');
+            $table->foreign('board')->references('id')->on('boards')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ class CreateBoardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('cards');
     }
 }

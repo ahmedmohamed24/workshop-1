@@ -24,4 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/{boardSlug}', [\App\Http\Controllers\BoardController::class, 'show'])->name('board.show');
     Route::put('/{boardSlug}', [\App\Http\Controllers\BoardController::class, 'update'])->name('board.update');
     Route::delete('/{boardSlug}', [\App\Http\Controllers\BoardController::class, 'delete'])->name('board.delete');
+
+    Route::post('/card', [\App\Http\Controllers\CardController::class, 'save'])->name('card.save');
+    Route::get('/{boardId}/{cardId}', [\App\Http\Controllers\CardController::class, 'show'])->name('card.show');
+    Route::put('/{boardId}/{cardId}', [\App\Http\Controllers\CardController::class, 'update'])->name('card.update');
+    Route::delete('/{boardId}/{cardId}', [\App\Http\Controllers\CardController::class, 'delete'])->name('card.delete');
 });
