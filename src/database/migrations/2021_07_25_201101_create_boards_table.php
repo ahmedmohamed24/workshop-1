@@ -13,7 +13,8 @@ class CreateBoardsTable extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('owner_id');
+            $table->unsignedBigInteger('owner');
+            $table->foreign('owner')->references('id')->on('users');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('color', 7);

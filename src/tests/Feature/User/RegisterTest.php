@@ -20,7 +20,7 @@ class RegisterTest extends TestCase
     public function testViewIsRegisterWhenVisitRegisterationRoute()
     {
         $this->withoutExceptionHandling();
-        $this->get(route('register'))->assertViewIs('register');
+        $this->get(route('register'))->assertViewIs('user.register');
     }
 
     // @test

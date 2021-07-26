@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Board
+ * App\Models\Board.
  *
  * @method static \Database\Factories\BoardFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Board newModelQuery()
@@ -22,5 +22,10 @@ class Board extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'color', 'slug', 'owner_id'];
+    protected $fillable = ['title', 'color', 'slug', 'owner'];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

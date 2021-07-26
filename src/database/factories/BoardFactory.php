@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Board;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -28,6 +29,7 @@ class BoardFactory extends Factory
             'title' => $title,
             'color' => $this->faker->hexColor,
             'slug' => Str::slug($title),
+            'owner' => \auth()->id() ?? User::factory()->create()->id,
         ];
     }
 }

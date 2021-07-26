@@ -26,7 +26,7 @@ class BoardPolicy
      */
     public function view(User $user, Board $board)
     {
-        return $board->owner_id == \auth()->id();
+        return $board->owner == \auth()->id();
     }
 
     /**
